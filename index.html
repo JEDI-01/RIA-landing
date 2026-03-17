@@ -1,233 +1,200 @@
 <!DOCTYPE html>
-<html lang="ko" class="landing-page">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>RIA - Emotion OS for Growth</title>
+    <title>RIA - Relational Intelligence AI</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@100;300;400;600;800&family=Share+Tech+Mono&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@100;300;400;600;700;800&display=swap');
         
-        :root {
-            --primary: #6366f1;
-            --bg: #030712;
-        }
-
         body { 
             font-family: 'Pretendard', sans-serif; 
-            letter-spacing: -0.03em; 
-            word-break: keep-all; 
-            background-color: var(--bg);
-            color: white;
+            letter-spacing: -0.02em; 
+            background-color: #030408;
+            color: #ececed;
+            margin: 0;
+            overflow-x: hidden;
         }
 
-        /* 2026 Trend: Smooth Snap Scrolling */
-        html.landing-page {
-            scroll-snap-type: y mandatory;
-            scroll-behavior: smooth;
+        .ria-hero-title {
+            font-size: clamp(2.5rem, 10vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.1;
         }
 
-        .snap-section {
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
+        /* 캐릭터 탭 활성화 스타일 */
+        .char-tab.active { opacity: 1 !important; transform: translateY(-5px); }
+        .char-tab.active .tab-circle { border-color: currentColor; box-shadow: 0 0 20px rgba(255,255,255,0.1); }
 
-        /* Kinetic Typography Effect */
-        .kinetic-text {
-            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-            opacity: 0;
-            transform: translateY(40px) scale(0.95);
-        }
-
-        .active .kinetic-text {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        /* Bento Grid Style */
-        .bento-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px);
-            border-radius: 24px;
-            transition: all 0.4s ease;
-        }
-
-        .bento-card:hover {
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-5px);
-        }
-
-        /* Receipt Font */
-        .receipt-font { font-family: 'Share Tech Mono', monospace; }
-
-        /* Background Glow */
-        .glow {
+        /* 배경 글로우 애니메이션 */
+        .bg-glow {
             position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(3, 7, 18, 0) 70%);
+            width: 600px;
+            height: 600px;
             border-radius: 50%;
-            pointer-events: none;
+            filter: blur(120px);
+            z-index: 0;
+            transition: background-color 0.8s ease;
         }
+
+        footer { background-color: #000; border-top: 1px solid rgba(255, 255, 255, 0.05); }
     </style>
 </head>
-<body class="overflow-x-hidden">
+<body>
 
-    <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-10 h-24 pointer-events-none">
-        <div class="pointer-events-auto flex items-center gap-2 font-black tracking-tighter text-xl">
-            <span class="text-indigo-500">RIA</span> OS
-        </div>
-        <div class="pointer-events-auto">
-            <button class="bg-white text-black px-6 py-2.5 rounded-full font-bold text-sm hover:scale-105 transition">Get Access</button>
+    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md h-16 flex items-center px-6 border-b border-white/5">
+        <div class="max-w-7xl w-full mx-auto flex justify-between items-center">
+            <div class="font-bold tracking-tighter text-lg uppercase">RIA Project</div>
+            <div class="hidden md:flex gap-8 text-xs font-medium text-slate-400">
+                <a href="#" class="hover:text-white transition">The Vision</a>
+                <a href="#" class="hover:text-white transition">Emotion OS</a>
+                <a href="#" class="hover:text-white transition">Privacy</a>
+            </div>
+            <button class="bg-indigo-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg">Beta Access</button>
         </div>
     </nav>
 
-    <section class="snap-section section-trigger">
-        <div class="glow" style="top: -10%; right: -10%;"></div>
-        <div class="text-center z-10 px-6 max-w-5xl">
-            <div class="kinetic-text">
-                <span class="text-indigo-400 font-mono tracking-widest uppercase text-xs mb-6 block">Beyond Emotion Logging</span>
-                <h1 class="text-5xl md:text-8xl font-extrabold mb-8 leading-[1.1]">
-                    감정은 소모가 아닌,<br><span class="text-slate-500 italic">데이터</span>여야 합니다.
-                </h1>
-                <p class="text-slate-400 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
-                    RIA는 주관적인 기분을 객관적인 시스템 언어로 번역합니다.<br>당신의 성장을 가이드하는 세계 최초의 Emotion OS.
+    <section class="pt-40 pb-20 px-6 max-w-7xl mx-auto relative">
+        <div class="bg-glow opacity-10" style="top: 0; right: -100px; background-color: #6366f1;"></div>
+        <div class="max-w-4xl relative z-10">
+            <span class="text-indigo-400 font-mono text-xs tracking-widest uppercase mb-4 block">Relational Intelligence AI</span>
+            <h1 class="ria-hero-title">
+                감정은 소모가 아닌,<br>
+                <span class="text-indigo-500">데이터</span>여야 합니다.
+            </h1>
+            <p class="mt-8 text-slate-400 text-lg md:text-2xl font-light leading-relaxed max-w-2xl">
+                기분에 그치지 않고 자산이 되는 경험. <br>
+                RIA는 당신의 감정을 분석해 관계의 패턴을 찾아내는 <br class="hidden md:block">나만의 Emotion OS입니다.
+            </p>
+        </div>
+    </section>
+
+    <section class="py-24 px-6 max-w-7xl mx-auto relative">
+        <div id="dynamic-glow" class="bg-glow opacity-[0.07]" style="top: 20%; left: 10%; background-color: #facc15;"></div>
+        
+        <div class="text-center mb-16 relative z-10">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4 text-white">마음을 정산하는 가이드</h2>
+            <p class="text-slate-500">알로, 엠보, 엔조가 당신의 데이터를 가공합니다.</p>
+        </div>
+
+        <div class="flex justify-center gap-6 md:gap-12 mb-16 relative z-10">
+            <div onclick="updateStep(1)" id="tab-1" class="char-tab active cursor-pointer text-center transition-all duration-300" style="color: #facc15;">
+                <div class="tab-circle w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/10 flex items-center justify-center text-2xl font-black mb-3">01</div>
+                <span class="text-[10px] font-bold tracking-widest">ALLO</span>
+            </div>
+            <div onclick="updateStep(2)" id="tab-2" class="char-tab opacity-30 cursor-pointer text-center transition-all duration-300" style="color: #ec4899;">
+                <div class="tab-circle w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/10 flex items-center justify-center text-2xl font-black mb-3">02</div>
+                <span class="text-[10px] font-bold tracking-widest">EMBO</span>
+            </div>
+            <div onclick="updateStep(3)" id="tab-3" class="char-tab opacity-30 cursor-pointer text-center transition-all duration-300" style="color: #a855f7;">
+                <div class="tab-circle w-16 h-16 md:w-20 md:h-20 rounded-full border border-white/10 flex items-center justify-center text-2xl font-black mb-3">03</div>
+                <span class="text-[10px] font-bold tracking-widest">ENZO</span>
+            </div>
+        </div>
+
+        <div class="bg-white/[0.02] border border-white/5 rounded-[40px] p-8 md:p-16 flex flex-col md:flex-row items-center gap-12 relative z-10">
+            <div class="flex-1 text-center">
+                <img id="char-img" src="알로.png" alt="Character" class="w-64 h-64 md:w-80 md:h-80 object-contain mx-auto transition-all duration-500">
+            </div>
+            <div class="flex-1">
+                <div id="char-tag" class="font-mono text-xs mb-4 tracking-widest font-bold" style="color: #facc15;">STEP 01 : INPUT</div>
+                <h3 id="char-title" class="text-3xl md:text-4xl font-bold mb-6 text-white leading-tight">호기심 많은 경청자,<br>알로와 시작하세요.</h3>
+                <p id="char-desc" class="text-slate-400 text-lg leading-relaxed mb-8">
+                    알로는 당신의 모든 이야기를 편견 없이 수집합니다. 일상의 메모부터 깊은 고민까지, 알로에게 건네는 문장은 RIA 분석의 기초 데이터가 됩니다.
                 </p>
-            </div>
-        </div>
-    </section>
-
-    <section class="snap-section section-trigger bg-[#050a18]">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <div class="kinetic-text mb-16 text-center">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4">왜 기록을 '자산'이라 부를까요?</h2>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bento-card p-8 kinetic-text" style="transition-delay: 0.1s;">
-                    <div class="text-indigo-500 mb-6 font-mono text-sm">01 Asset</div>
-                    <h3 class="text-xl font-bold mb-4">휘발되지 않는 기록</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">일기는 적고 잊혀지지만, 데이터는 쌓여 패턴이 됩니다. 당신의 과거를 미래를 위한 알고리즘으로 만드세요.</p>
-                </div>
-                <div class="bento-card p-8 kinetic-text" style="transition-delay: 0.2s;">
-                    <div class="text-indigo-500 mb-6 font-mono text-sm">02 System</div>
-                    <h3 class="text-xl font-bold mb-4">정교한 감정 OS</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">복잡한 관계와 내면의 갈등을 구조화합니다. 기분 뒤에 숨겨진 진짜 '트리거'를 시스템적으로 격리하고 관리하세요.</p>
-                </div>
-                <div class="bento-card p-8 kinetic-text" style="transition-delay: 0.3s;">
-                    <div class="text-indigo-500 mb-6 font-mono text-sm">03 Growth</div>
-                    <h3 class="text-xl font-bold mb-4">의사결정 최적화</h3>
-                    <p class="text-slate-500 text-sm leading-relaxed">반복되는 실수와 번아웃의 지점을 정확히 짚어냅니다. RIA의 분석 결과는 더 나은 내일을 위한 정밀한 지도가 됩니다.</p>
+                <div class="p-4 bg-white/5 rounded-2xl border-l-2 border-current">
+                    <p id="char-msg" class="text-sm italic text-slate-300">"알로: 무슨 일이 있었나요? 제가 다 들어드릴게요!"</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="snap-section section-trigger">
-        <div class="glow" style="bottom: -10%; left: -10%;"></div>
-        <div class="text-center z-10 px-6 w-full max-w-3xl">
-            <div class="kinetic-text">
-                <h2 class="text-3xl md:text-6xl font-extrabold mb-12">System Sync</h2>
-                <div class="bento-card p-8 md:p-12 relative overflow-hidden group">
-                    <textarea id="emotion-input" 
-                        class="w-full bg-transparent border-none text-xl md:text-2xl text-center outline-none resize-none placeholder-slate-700 h-32 mb-8" 
-                        placeholder="지금 시스템에 입력할 감정 데이터를 적어주세요."></textarea>
-                    
-                    <button onclick="issueReceipt()" id="issue-btn" 
-                        class="w-full bg-indigo-600 text-white py-5 rounded-2xl font-black text-lg hover:bg-indigo-500 transition-all active:scale-95 shadow-[0_0_30px_rgba(99,102,241,0.3)]">
-                        구조화 시작하기 (Data Sync)
-                    </button>
-                    
-                    <div id="receipt-result" class="hidden mt-8 text-left border-t border-white/10 pt-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-                        </div>
+    <footer class="py-20 px-6">
+        <div class="max-w-7xl w-full mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-sm text-slate-500">
+                <div class="col-span-1 md:col-span-2 text-left">
+                    <p class="font-black text-white mb-6 uppercase tracking-[0.4em] text-xs">RIA PROJECT</p>
+                    <p class="max-w-md leading-loose font-light text-xs md:text-sm">
+                        RIA는 관계 지능을 높이기 위한 AI 솔루션입니다. <br>
+                        인간의 감정을 체계적으로 이해하고 데이터로 정산하여 <br>
+                        더 건강한 나와 관계를 만드는 기술을 지향합니다.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-white mb-6 uppercase tracking-widest text-[10px]">Business Info</h5>
+                    <div class="leading-[2.4] font-light text-[11px] md:text-xs">
+                        <p>서울특별시 강남구 테헤란로 301 삼정빌딩 8~9층</p>
+                        <p>(주)인성정보 | 대표이사 : 조승필</p>
+                        <p>사업자등록번호 : 215-81-58985</p>
+                        <p>Tel : 02-3400-7000</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <footer class="snap-section flex flex-col items-center justify-between py-20 bg-black">
-        <div class="text-center kinetic-text">
-            <h2 class="text-4xl md:text-6xl font-black mb-8 italic">READY TO SYNC?</h2>
-            <p class="text-slate-500 mb-12">당신의 감정은 이제 더 이상 모호하지 않을 것입니다.</p>
-            <div class="flex gap-4 justify-center">
-                <div class="w-32 h-32 bg-white/5 rounded-2xl border border-white/10 p-2 flex flex-col items-center justify-center gap-2">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://apple.com" class="w-20 h-20 invert opacity-80">
-                    <span class="text-[10px] font-bold">iOS</span>
-                </div>
-                <div class="w-32 h-32 bg-white/5 rounded-2xl border border-white/10 p-2 flex flex-col items-center justify-center gap-2">
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=https://google.com" class="w-20 h-20 invert opacity-80">
-                    <span class="text-[10px] font-bold">Android</span>
+            <div class="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-[10px] text-slate-700 font-mono tracking-widest uppercase text-center">© 2026 RIA PROJECT. ALL RIGHTS RESERVED.</p>
+                <div class="flex gap-6 text-[10px] text-slate-700 uppercase tracking-widest">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms</a>
                 </div>
             </div>
-        </div>
-        <div class="text-[10px] text-slate-700 font-mono tracking-widest uppercase mt-12">
-            RIA PROJECT © 2026 EMOTION OS SYSTEM
         </div>
     </footer>
 
     <script>
-        // Intersection Observer for Kinetic Text
-        const observerOptions = { threshold: 0.5 };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.section-trigger').forEach(section => observer.observe(section));
-
-        // n8n Webhook Logic
-        const webhookUrl = 'https://pdh1703.app.n8n.cloud/webhook/ria-pro';
-
-        async function issueReceipt() {
-            const input = document.getElementById('emotion-input').value;
-            const btn = document.getElementById('issue-btn');
-            const resultArea = document.getElementById('receipt-result');
-
-            if(!input.trim()) return;
-
-            btn.disabled = true;
-            btn.innerHTML = 'DATA STRUCTURING...'; 
-
-            try {
-                const response = await fetch(webhookUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ type: 'receipt', chatInput: input })
-                });
-                const data = await response.json(); 
-                let rawText = data.receipt || "데이터 추출 실패";
-                const shareText = `${rawText}\n\n🔗 나도 감정 정산하러 가기\n${window.location.href}`;
-
-                resultArea.innerHTML = `
-                    <div class="receipt-font text-sm leading-loose text-indigo-300 mb-8 whitespace-pre-line">
-                        ${rawText}
-                    </div>
-                    <button onclick="copyToClipboard('${shareText.replace(/\n/g, '\\n')}')" class="w-full border border-indigo-500/30 text-indigo-400 py-3 rounded-xl font-bold hover:bg-indigo-500/10 transition">
-                        결과값 복사 및 공유 (Export)
-                    </button>
-                `;
-                resultArea.classList.remove('hidden');
-                btn.innerHTML = 'SYSTEM RE-SYNC';
-                btn.disabled = false;
-            } catch (error) {
-                btn.innerHTML = 'SYNC ERROR';
-                btn.disabled = false;
+        const riaSystem = {
+            1: {
+                name: "ALLO", color: "#facc15", tag: "STEP 01 : INPUT",
+                title: "호기심 많은 경청자,<br>알로와 시작하세요.",
+                desc: "알로는 당신의 모든 이야기를 편견 없이 수집합니다. 일상의 메모부터 깊은 고민까지, 알로에게 건네는 문장은 RIA 분석의 기초 데이터가 됩니다.",
+                msg: "알로: 무슨 일이 있었나요? 제가 다 들어드릴게요!",
+                img: "알로.png"
+            },
+            2: {
+                name: "EMBO", color: "#ec4899", tag: "STEP 02 : ANALYSIS",
+                title: "맥락을 짚어내는,<br>엠보의 부드러운 분석.",
+                desc: "엠보는 텍스트에 숨겨진 감정의 파동을 읽어냅니다. 복잡한 마음의 실타래를 유연하게 분류하여 데이터에 질서를 부여합니다.",
+                msg: "엠보: 복잡한 마음을 몽글몽글하게 정리해 드릴게요.",
+                img: "엠보.png"
+            },
+            3: {
+                name: "ENZO", color: "#a855f7", tag: "STEP 03 : INSIGHT",
+                title: "날카로운 통찰력,<br>엔조의 명확한 리포트.",
+                desc: "엔조는 분석된 데이터를 삶의 지도로 만듭니다. 반복되는 갈등 패턴을 발견하고 관계 지능을 높일 수 있는 가이드를 제시합니다.",
+                msg: "엔조: 데이터가 말하는 당신의 다음 스텝은 이것입니다.",
+                img: "엔조.png"
             }
-        }
+        };
 
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text.replace(/\\n/g, '\n')).then(() => alert("데이터가 클립보드에 복사되었습니다."));
+        function updateStep(id) {
+            const data = riaSystem[id];
+            
+            // 탭 상태 변경
+            document.querySelectorAll('.char-tab').forEach(tab => {
+                tab.classList.remove('active');
+                tab.style.opacity = "0.3";
+            });
+            const activeTab = document.getElementById(`tab-${id}`);
+            activeTab.classList.add('active');
+            activeTab.style.opacity = "1";
+
+            // 컨텐츠 변경
+            document.getElementById('char-tag').innerText = data.tag;
+            document.getElementById('char-tag').style.color = data.color;
+            document.getElementById('char-title').innerHTML = data.title;
+            document.getElementById('char-desc').innerText = data.desc;
+            document.getElementById('char-msg').innerText = data.msg;
+            document.getElementById('dynamic-glow').style.backgroundColor = data.color;
+            
+            // 이미지 애니메이션
+            const imgEl = document.getElementById('char-img');
+            imgEl.style.opacity = "0";
+            imgEl.style.transform = "scale(0.8)";
+            setTimeout(() => {
+                imgEl.src = data.img;
+                imgEl.style.opacity = "1";
+                imgEl.style.transform = "scale(1)";
+            }, 300);
         }
     </script>
 </body>
